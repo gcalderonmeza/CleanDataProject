@@ -4,7 +4,7 @@
 There is a single script called "run_analysis.R".
 The script is in the root of the repository.
 
-## Executing the script
+### Executing the script
 
 In order to run the script start by running R.
 
