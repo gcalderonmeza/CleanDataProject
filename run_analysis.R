@@ -1,6 +1,6 @@
 # CleanData Project
 
-if (exists("./UCI HAR Dataset")) {
+if (file.exists("./UCI HAR Dataset")) {
 
   # Load data from the given files
   featureNames <- read.table("./UCI HAR Dataset/features.txt")
@@ -19,9 +19,13 @@ if (exists("./UCI HAR Dataset")) {
   rm(subjects)
 
   # Extract the columns fr mean and std for all measurements
-  columns <- sort(c(1, grep(".-mean.", as.character(featureNames$V2)) + 1, grep(".-std.", as.character(featureNames$V2)) + 1))
-  dataFrameSelected <- dataFrame[columns]
+  dataFrameSelected <- dataFrame[sort(c(1, grep("-mean", as.character(featureNames$V2)) + 1, grep("-std", as.character(featureNames$V2)) + 1))]
+  
+  # Tidy the data (I do not see a link to activity in the data)
+  dataTidy <- melt(dataFrameSelected, id.vars= c("Subject"))
 
+  dataSummary <- dcast(dataTidy, Subject ~ variable, fun.aggregate = mean)
+  
   # write the output
-  write.table(dataFrameSelected, file="./output.txt", row.name=FALSE)
+  write.table(dataSummary, file="./output.txt", row.name=FALSE)
 }
