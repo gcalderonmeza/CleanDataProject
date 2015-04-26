@@ -26,7 +26,7 @@ These data were also used to extract the measurements for mean and std from the 
 The data in subject_train.txt and subject_test.txt were used a column in the merged dataset. The name of this column is "Subject"
 
 ### Output data description
-Field	Type	Description
+_Field	Type	Description_
 
 Subject	Integer	The Id/Code of he subject. Values from 1 to 30
 
