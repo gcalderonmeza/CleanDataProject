@@ -11,11 +11,12 @@ As input the following files were used:
 
 * ./UCI HAR Dataset/features.txt
 * ./UCI HAR Dataset/train/X_train.txt
+* ./UCI HAR Dataset/train/Y_train.txt
 * ./UCI HAR Dataset/test/X_test.txt
+* ./UCI HAR Dataset/test/Y_test.txt
 * ./UCI HAR Dataset/train/subject_train.txt
 * ./UCI HAR Dataset/test/subject_test.txt
-
-No immediate way to link the activities with the with the records was found then the file: "activity_labels.txt" was n used.
+* ./UCI HAR Dataset/activity_labels.txt
 
 ### Transformation
 
@@ -25,10 +26,15 @@ These data were also used to extract the measurements for mean and std from the 
 
 The data in subject_train.txt and subject_test.txt were used a column in the merged dataset. The name of this column is "Subject"
 
+The data in the Y_train and Y_test files were used to link the activities to the data in the activity_labels file. 
+The merge was done via a rbind of Y_train and Y_test followed by a a merge with activity_labels.
+
 ### Output data description
 __Field        Type        Description__
 
 Subject        Integer        The Id/Code of he subject. Values from 1 to 30
+
+Activity        Factor        The label for the activity. Values: WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING
 
 tBodyAcc.mean...X        Double        Time domain mean for BodyAcc axis X
 
